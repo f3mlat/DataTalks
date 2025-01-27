@@ -76,3 +76,5 @@ WHERE ez.tip_amount = (SELECT MAX(tip_amount) FROM cte_east_halem_north_zone)
 
 ## Question 7
 Answer: terraform init, terraform apply -auto-approve, terraform destroy
+
+The setup files with necessary changes can be found [here](./1_terraform_gcp/terraform)
