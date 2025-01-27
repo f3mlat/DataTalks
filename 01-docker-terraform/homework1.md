@@ -26,6 +26,10 @@ Registered database server in pgadmin using the hostname - db and port 5433 and 
 
 Answer: db:5433
 
+
+# Note for Questions 3 to 6
+The python and jupyter files used for injecting the green taxi trips and taxi zone lookup datasets can be found [here](./2_docker_sql))
+
 ## Question 3
 ```shell
 SELECT	DATE(lpep_dropoff_datetime) AS TripDate,
