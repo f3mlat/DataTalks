@@ -28,7 +28,7 @@ Answer: db:5433
 
 
 # Note for Questions 3 to 6
-The python and jupyter files used for injecting the green taxi trips and taxi zone lookup datasets can be found [here](./2_docker_sql))
+The python and jupyter files used for injecting the green taxi trips and taxi zone lookup datasets can be found [here](./2_docker_sql)
 
 ## Question 3
 ```shell
