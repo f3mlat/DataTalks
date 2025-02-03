@@ -25,7 +25,7 @@ Executed the flow in [here](./flows/02_postgres_taxi_scheduled.yaml) for Yellow 
 
 This is shown in the image below
 
-![homework datasets](../../../02-workflow-orchestration/images/homework.png)
+![homework datasets](./images/question3.png)
 
 ## Question 4
 ```shell
