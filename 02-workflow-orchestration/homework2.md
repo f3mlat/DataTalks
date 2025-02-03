@@ -27,41 +27,25 @@ This is shown in the image below
 
 ![homework datasets](./images/question3.png)
 
+
 ## Question 4
-```shell
-SELECT DATE(lpep_pickup_datetime)
-FROM public.green_taxi_data
-WHERE trip_distance = (SELECT MAX(trip_distance) FROM public.green_taxi_data)
-```
+Executed the flow in [here](./flows/02_postgres_taxi_scheduled.yaml) for Yellow taxi and configuring the backfill extensions in the Trigger tab.
+
+This is shown in the image below
+
+![homework datasets](./images/question4.png)
 
 ## Question 5
-```shell
-SELECT tz."Zone", SUM(td.total_amount)
-FROM public.green_taxi_data td
-INNER JOIN public.taxi_zones tz ON td."PULocationID" = tz."LocationID"
-WHERE DATE(td.lpep_pickup_datetime) = '2019-10-18'
-GROUP BY tz."Zone"
-HAVING SUM(td.total_amount) > 13000
-```
+Modified the flow that listed just years 2019 and 2020 to include 2021. The modified file can be found  [here](./flows/02_postgres_taxi_all_years.yaml).
+
+Executed the flow selecting Green taxi, year 2021 and month 03. This is shown in the image below.
+
+![homework datasets](./images/question5.png)
+
 
 ## Question 6
-```shell
-WITH cte_east_halem_north_zone AS
-(
-	SELECT td.tip_amount, td."DOLocationID"
-	FROM public.green_taxi_data td
-	INNER JOIN public.taxi_zones tz ON td."PULocationID" = tz."LocationID"
-	WHERE to_char(DATE(td.lpep_pickup_datetime), 'YYYY-MM') = '2019-10'
-			AND tz."Zone" = 'East Harlem North'
-)
+Timezone configuration to New York was achieved by adding a timezone property set to America/New_York in the Schedule trigger configuration.
 
-SELECT tz."Zone"
-FROM cte_east_halem_north_zone ez
-INNER JOIN public.taxi_zones tz ON ez."DOLocationID" = tz."LocationID"
-WHERE ez.tip_amount = (SELECT MAX(tip_amount) FROM cte_east_halem_north_zone)
-```
+This is shown in the image below
 
-## Question 7
-Answer: terraform init, terraform apply -auto-approve, terraform destroy
-
-The setup files with necessary changes can be found [here](./1_terraform_gcp/terraform)
+![homework datasets](./images/question6.png)
