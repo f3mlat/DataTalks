@@ -20,22 +20,12 @@ According to the question, the rendered value of the variable file is made up of
 Answer: green_tripdata_2020-04.csv
 
 
-# Note for Questions 3 to 6
-The python and jupyter files used for injecting the green taxi trips and taxi zone lookup datasets can be found [here](./2_docker_sql)
-
 ## Question 3
-```shell
-SELECT	DATE(lpep_dropoff_datetime) AS TripDate,
-		SUM(CASE WHEN trip_distance <= 1.00 THEN 1 ELSE 0 END) AS "UP TO 1",
-		SUM(CASE WHEN trip_distance > 1.00 AND trip_distance <= 3.00 THEN 1 ELSE 0 END) AS "BTW 1 AND 3",
-		SUM(CASE WHEN trip_distance > 3.00 AND trip_distance <= 7.00 THEN 1 ELSE 0 END) AS "BTW 3 AND 7",
-		SUM(CASE WHEN trip_distance > 7.00 AND trip_distance <= 10.00 THEN 1 ELSE 0 END) AS "BTW AND 10",
-		SUM(CASE WHEN trip_distance > 10.00 THEN 1 ELSE 0 END) AS "OVER 10"
-FROM public.green_taxi_data
-WHERE DATE(lpep_dropoff_datetime) >= '2019-10-01' 
-		AND DATE(lpep_dropoff_datetime) < '2019-11-01'
-GROUP BY ROLLUP (DATE(lpep_dropoff_datetime))
-```
+Executed the flow in [here](./flows/02_postgres_taxi_scheduled.yaml) for Yellow taxi and configuring the backfill extensions in the Trigger tab.
+
+This is shown in the image below
+
+![homework datasets](../../../02-workflow-orchestration/images/homework.png)
 
 ## Question 4
 ```shell
