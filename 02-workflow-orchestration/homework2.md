@@ -21,7 +21,7 @@ Answer: green_tripdata_2020-04.csv
 
 
 ## Question 3
-Executed the flow in [here](./flows/02_postgres_taxi_scheduled.yaml) for Yellow taxi and configuring the backfill extensions in the Trigger tab.
+Executed the flow [here](./flows/02_postgres_taxi_scheduled.yaml) for Yellow taxi and configuring the backfill extensions in the Trigger tab.
 
 This is shown in the image below
 
@@ -29,7 +29,7 @@ This is shown in the image below
 
 
 ## Question 4
-Executed the flow in [here](./flows/02_postgres_taxi_scheduled.yaml) for Green taxi and configuring the backfill extensions in the Trigger tab.
+Executed the flow [here](./flows/02_postgres_taxi_scheduled.yaml) for Green taxi and configuring the backfill extensions in the Trigger tab.
 
 This is shown in the image below
 
