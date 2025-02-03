@@ -46,6 +46,8 @@ Executed the flow selecting Green taxi, year 2021 and month 03. This is shown in
 ## Question 6
 Timezone configuration to New York was achieved by adding a timezone property set to America/New_York in the Schedule trigger configuration.
 
+The modified file can be found  [here](./flows/02_postgres_taxi_scheduled_with_newyork_time.yaml).
+
 This is shown in the image below
 
 ![homework datasets](./images/question6.png)
