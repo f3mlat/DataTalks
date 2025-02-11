@@ -24,7 +24,7 @@ SQL query for the count of records for the 2024 Yellow Taxi Data is below:
 SELECT COUNT(*)
 FROM `dezoomcampnytaxi.regular_yellowtaxi_tripdata`;
 ```
-Checkout the result in below screenshot:<br/>
+The result can be seen in the screenshot below:<br/>
 ![record_count](./images/question1.png)
 
 Answer: 20332093
@@ -39,30 +39,42 @@ SELECT COUNT(DISTINCT(PULocationID))
 FROM `dezoomcampnytaxi.regular_yellowtaxi_tripdata`;
 ```
 
-The estimated amount it shown in the screenshots below:
+The estimated amount it shown in the screenshots below:<br/>
 ![estimated_amount](./images/question2_1.png)
 
 ![estimated_amount](./images/question2_2.png)
 
 
 
-Answer: green_tripdata_2020-04.csv
+Answer: 0 MB for the External Table and 155.12 MB for the Materialized Table
 
 
 ## Question 3
-Executed the flow [here](./flows/02_postgres_taxi_scheduled.yaml) for Yellow taxi and configuring the backfill extensions in the Trigger tab.
+SQL query to retrieve the PULocationID from the table (not the external table) in BigQuery:<br/>
+```
+SELECT PULocationID
+FROM `dezoomcampnytaxi.regular_yellowtaxi_tripdata`;
+```
+SQL query to retrieve the PULocationID and DOLocationID on the same table:<br/>
+```
+SELECT PULocationID, DOLocationID
+FROM `dezoomcampnytaxi.regular_yellowtaxi_tripdata`;
+```
 
-This is shown in the image below
-
-![homework datasets](./images/question3.png)
-
+Answer: BigQuery is a columnar database, and it only scans the specific columns requested in the query. Querying two columns (PULocationID, DOLocationID) requires 
+reading more data than querying one column (PULocationID), leading to a higher estimated number of bytes processed.
 
 ## Question 4
-Executed the flow [here](./flows/02_postgres_taxi_scheduled.yaml) for Green taxi and configuring the backfill extensions in the Trigger tab.
+SQL query to count the number of records having a fare_amount of 0:
+```
+SELECT COUNT(*)
+FROM `dezoomcampnytaxi.regular_yellowtaxi_tripdata`
+WHERE fare_amount = 0;
+```
+The result can be seen in the screenshot below:<br/>
+![0_fare_amount_count](./images/question4.png)
 
-This is shown in the image below
-
-![homework datasets](./images/question4.png)
+Answer:8333
 
 ## Question 5
 Modified the flow that listed just years 2019 and 2020 to include 2021. The modified file can be found  [here](./flows/02_postgres_taxi_all_years.yaml).
