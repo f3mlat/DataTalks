@@ -1,4 +1,6 @@
-The download of the parquet files and upload to my GCS bucket was carried out using the linked script [here](./load_yellow_taxi_data.py):<br>
+SQL file that contains all the queries can be found [here](./big_query_hw.sql):<br/><br/>
+
+The download of the parquet files and upload to my GCS bucket was carried out using the linked script [here](./load_yellow_taxi_data.py):<br/>
 The screenshot of the downloaded files is below:<br/>
 ![6_parquet_files](./images/parquet_files_in_gcp_bucket.png)
 
@@ -106,7 +108,7 @@ The estimated amounts are shown in the screenshots below:<br/>
 
 ![estimated_amount](./images/question6_2.png)
 
-Answer:**310.24 MB for non-partitioned table and 26.84 MB for the partitioned table**
+Answer: **310.24 MB for non-partitioned table and 26.84 MB for the partitioned table**
 
 ## (Bonus: Not worth points) Question 9:
 SQL query to count all records in materialized table:
@@ -116,5 +118,5 @@ FROM `dezoomcamp2025-449018.dezoomcampnytaxi.regular_yellowtaxi_tripdata`
 ```
 The estimated amount is shown in the screenshot below:<br/>
 ![estimated_amount](./images/question9.png)
-Answer:**0B**
+Answer: **0B**
 
