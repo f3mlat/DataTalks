@@ -12,13 +12,13 @@ The screenshot of the staging models, dimensions, and facts in GCP can be found 
 
 ## Question 1
 The sources.yaml file as provided can be found [here](./sources.yaml)<br/>
-The screenshot for the env variables setup where dbt runs can be found [here](./images/question1_1.png),br/>
+The screenshot for the env variables setup where dbt runs can be found [here](./images/hw4_q1_1.png)<br/>
 The sql file with the provided script can be found [here](./ext_green_taxi.sql)<br/>
 
 After running `dbt build`, the resulting compiled sql file can be found [here](./ext_green_taxi_compiled.sql)
 
 
-Answer: **20332093**
+Answer: `**select * from myproject.raw_nyc_tripdata.ext_green_taxi**`
 
 ## Question 2
 SQL query to count the distinct number of PULocationIDs for the entire dataset on both the tables.</br>
