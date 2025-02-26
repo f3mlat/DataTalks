@@ -39,56 +39,36 @@ The error message can be found in the screenshot [here](./images/hw4_q3_1.png)
 Answer: **dbt run --select +models/core/dim_taxi_trips.sql+ --target prod**
 
 ## Question 4
-SQL query to count the number of records having a fare_amount of 0:
-```
-SELECT COUNT(*)
-FROM `dezoomcamp2025-449018.dezoomcampnytaxi.regular_yellowtaxi_tripdata`
-WHERE fare_amount = 0;
-```
-The result can be seen in the screenshot below:<br/>
-![0_fare_amount_count](./images/question4.png)
+After setting up the macro and running `dbt run`, the result is shown in this screenshot [here](./images/hw4_q4_1.png)<br/>
 
-Answer: **8333**
+For the options below, the env vars are appended to the dataset configured in profiles.yml
+* When using core, it materializes in the dataset defined in DBT_BIGQUERY_TARGET_DATASET<br/>
+* When using stg, it materializes in the dataset defined in DBT_BIGQUERY_STAGING_DATASET, or defaults to DBT_BIGQUERY_TARGET_DATASET<br/>
+* When using staging, it materializes in the dataset defined in DBT_BIGQUERY_STAGING_DATASET, or defaults to DBT_BIGQUERY_TARGET_DATASET<br/>
+
+Answer: **Setting a value for  DBT_BIGQUERY_TARGET_DATASET env var is mandatory, or it'll fail to compile**
+
+
+For Question 5 to 7, the models where created:
+* [Date dimension](./dim_date.sql)
+* [Taxi trips fact](./fact_taxi_trips.sql)
+* [Taxi trips quarterly revenue](./fact_taxi_trips_quarterly_revenue.sql)
+* [Taxi trips monthly fare P95](./fact_taxi_trips_monthly_fare_p95.sql)
+* [FHV trips dimension](./dim_fhv_trips.sql)
+* [FHV monthly zone traveltime P90](./fact_fhv_monthly_zone_traveltime_p90.sql)
 
 ## Question 5
-SQL query to create new table with the best strategy to make an optimized table in Big Query if your query will always filter based on tpep_dropoff_datetime and order the results by VendorID:<br/>
-```
-CREATE OR REPLACE TABLE `dezoomcamp2025-449018.dezoomcampnytaxi.yellowtaxi_tripdata_partitoned_clustered`
-PARTITION BY DATE(tpep_pickup_datetime)
-CLUSTER BY VendorID 
-AS
-SELECT * FROM `dezoomcamp2025-449018.dezoomcampnytaxi.external_yellowtaxi_tripdata`;
-```
-Answer: **Partition by tpep_dropoff_datetime and Cluster on VendorID**
+A screenshot of the fact_taxi_trips_quarterly_revenue table from BigQuery is shown [here](./images/hw4_q5_1.png)<br/>
 
+Answer: **green: {best: 2020/Q1, worst: 2020/Q2}, yellow: {best: 2020/Q1, worst: 2020/Q2}**
 
 ## Question 6
-SQL query to retrieve the distinct VendorIDs between tpep_dropoff_datetime 2024-03-01 and 2024-03-15 (inclusive):</br>
-**Using the materialized table**<br/>
-```
-SELECT DISTINCT(VendorID)
-FROM `dezoomcamp2025-449018.dezoomcampnytaxi.regular_yellowtaxi_tripdata`
-WHERE DATE(tpep_pickup_datetime) BETWEEN '2024-03-01' AND '2024-03-15';
-```
-**Using the partitioned table**<br/>
-```
-SELECT DISTINCT(VendorID)
-FROM `dezoomcamp2025-449018.dezoomcampnytaxi.yellowtaxi_tripdata_partitoned_clustered`
-WHERE DATE(tpep_pickup_datetime) BETWEEN '2024-03-01' AND '2024-03-15';
-```
-The estimated amounts are shown in the screenshots below:<br/>
-![estimated_amount](./images/question6_1.png)
+A screenshot of the fact_taxi_trips_quarterly_revenue table from BigQuery is shown [here](./images/hw4_q6_1.png)<br/>
 
-![estimated_amount](./images/question6_2.png)
+Answer: **green: {p97: 55.0, p95: 45.0, p90: 26.5}, yellow: {p97: 31.5, p95: 25.5, p90: 19.0}**
 
-Answer: **310.24 MB for non-partitioned table and 26.84 MB for the partitioned table**
+## Question 7
+A screenshot of the fact_taxi_trips_quarterly_revenue table from BigQuery is shown [here](./images/hw4_q7_1.png)<br/>
 
-## (Bonus: Not worth points) Question 9:
-SQL query to count all records in materialized table:
-```
-SELECT COUNT(*)
-FROM `dezoomcamp2025-449018.dezoomcampnytaxi.regular_yellowtaxi_tripdata`
-```
-The estimated amount is shown in the screenshot below:<br/>
-![estimated_amount](./images/question9.png)
-Answer: **0B**
+Answer: **LaGuardia Airport, Chinatown, Garment District**
+
