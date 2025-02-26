@@ -1,4 +1,4 @@
-cutty## SETUP
+## SETUP
 
 The datasets can be found [here](./images/datasets_in_gcs.png) <br/>
 
