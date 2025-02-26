@@ -1,4 +1,4 @@
-## SETUP
+cutty## SETUP
 
 The datasets can be found [here](./images/datasets_in_gcs.png) <br/>
 
@@ -33,19 +33,10 @@ The script generated can be found [here](./fact_recent_taxi_trips_compiled_witho
 Answer: **Update the WHERE clause to `pickup_datetime >= CURRENT_DATE - INTERVAL '{{ var("days_back", env_var("DAYS_BACK", "30")) }}' DAY`**
 
 ## Question 3
-SQL query to retrieve the PULocationID from the table (not the external table) in BigQuery:<br/>
-```
-SELECT PULocationID
-FROM `dezoomcamp2025-449018.dezoomcampnytaxi.regular_yellowtaxi_tripdata`;
-```
-SQL query to retrieve the PULocationID and DOLocationID on the same table:<br/>
-```
-SELECT PULocationID, DOLocationID
-FROM `dezoomcamp2025-449018.dezoomcampnytaxi.regular_yellowtaxi_tripdata`;
-```
-Answer: **BigQuery is a columnar database, and it only scans the specific columns requested in the query. Querying two columns (PULocationID, DOLocationID) requires 
-reading more data than querying one column (PULocationID), leading to a higher estimated number of bytes processed.**
+Doing a `dbt run` to materialize fact_taxi_monthly_zone_revenue was successful in all cases except for option 2<br/>
+The error message can be found in the screenshot [here](./images/hw4_q3_1.png)
 
+Answer: **dbt run --select +models/core/dim_taxi_trips.sql+ --target prod**
 
 ## Question 4
 SQL query to count the number of records having a fare_amount of 0:
