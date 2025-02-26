@@ -1,6 +1,6 @@
 ## SETUP
 
-The datasets can be found [here](./images/dataset_in_gcs.png) <br/>
+The datasets can be found [here](./images/datasets_in_gcs.png) <br/>
 
 Here are the tables and number of records:
 * Green Taxi table shown [here](./images/green_taxi_records_bq.png) <br/>
@@ -11,13 +11,12 @@ The screenshot of the staging models, dimensions, and facts in GCP can be found 
 
 
 ## Question 1
-SQL query for the count of records for the 2024 Yellow Taxi Data is below:
-```
-SELECT COUNT(*)
-FROM `dezoomcampnytaxi.regular_yellowtaxi_tripdata`;
-```
-The result can be seen in the screenshot below:<br/>
-![record_count](./images/question1.png)
+The sources.yaml file as provided can be found [here](./sources.yaml)<br/>
+The screenshot for the env variables setup where dbt runs can be found [here](./images/question1_1.png),br/>
+The sql file with the provided script can be found [here](./ext_green_taxi.sql)<br/>
+
+After running `dbt build`, the resulting compiled sql file can be found [here](./ext_green_taxi_compiled.sql)
+
 
 Answer: **20332093**
 
