@@ -48,9 +48,11 @@ For the options below, the env vars are appended to the dataset configured in pr
 
 Answer: **Setting a value for  DBT_BIGQUERY_TARGET_DATASET env var is mandatory, or it'll fail to compile**
 
+<br/><br/>
 
 For Question 5 to 7, the models where created:
 * [Date dimension](./dim_date.sql)
+* [Zone Look dimension](./dim_zone_lookuo.sql)
 * [Taxi trips fact](./fact_taxi_trips.sql)
 * [Taxi trips quarterly revenue](./fact_taxi_trips_quarterly_revenue.sql)
 * [Taxi trips monthly fare P95](./fact_taxi_trips_monthly_fare_p95.sql)
