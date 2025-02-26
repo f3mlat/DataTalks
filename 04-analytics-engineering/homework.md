@@ -17,26 +17,20 @@ The sql file with the provided script can be found [here](./ext_green_taxi.sql)<
 
 After running `dbt build`, the resulting compiled sql file can be found [here](./ext_green_taxi_compiled.sql)
 
-
 Answer: `select * from myproject.raw_nyc_tripdata.ext_green_taxi`
 
 ## Question 2
-SQL query to count the distinct number of PULocationIDs for the entire dataset on both the tables.</br>
-```
-SELECT COUNT(DISTINCT(PULocationID))
-FROM `dezoomcamp2025-449018.dezoomcampnytaxi.external_yellowtaxi_tripdata`;
+Setting up the DAYS_BACK ENV_VAR to -15 can be seen in the screenshot [here](./images/hw4_q2_1.png)<br/>
+Using the provided snippet with the WHERE clause updated to option 4, the dbt_model fact_recent_taxi_trips file can be found [here](./fact_recent_taxi_trips.sql)<br/>
 
-SELECT COUNT(DISTINCT(PULocationID))
-FROM `dezoomcamp2025-449018.dezoomcampnytaxi.regular_yellowtaxi_tripdata`;
-```
+* Compiling the dbt_model fact_recent_taxi_trips with the command line argument days_back set to -7 can be seen [here](./images/hw4_q2_2.png)<br/>
+The script generated can be found [here](./fact_recent_taxi_trips_compiled_using_cmd_line_args.sql)
+* Compiling the dbt_model fact_recent_taxi_trips without setting command line argument days_back<br/>
+The script generated can be found [here](./fact_recent_taxi_trips_compiled_without_cmd_line_args.sql)
+* Compiling the dbt_model fact_recent_taxi_trips without setting command line argument days_back and ENV_VAR DAYS_BACK<br/>
+The script generated can be found [here](./fact_recent_taxi_trips_compiled_without_cmd_line_args_and_env_vars.sql)
 
-The estimated amounts are shown in the screenshots below:<br/>
-![estimated_amount](./images/question2_1.png)
-
-![estimated_amount](./images/question2_2.png)
-
-Answer: **0 MB for the External Table and 155.12 MB for the Materialized Table**
-
+Answer: **Update the WHERE clause to `pickup_datetime >= CURRENT_DATE - INTERVAL '{{ var("days_back", env_var("DAYS_BACK", "30")) }}' DAY`**
 
 ## Question 3
 SQL query to retrieve the PULocationID from the table (not the external table) in BigQuery:<br/>
