@@ -8,6 +8,8 @@ wget https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-10.par
 * Create a local spark session
 * Execute spark.version
 
+## Note
+Notebook with solution can be found [here](./hw5_batch_pyspark.ipynb):<br/><br/>
 
 ## Question 1
 Executing spark.version gave '3.5.5'
